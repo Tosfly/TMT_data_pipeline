@@ -5,3 +5,4 @@ Easy handle IP2 generated IP2 quant files.
 2. input files: TMT result in proList.csv (download from IP2 quant). Sample information in Sample_info.csv (mannually create). Put them in the same folder.
 
 3. run this line: python process_16plex_tmt_multiple_groups.py --prolist proList.csv --sampleinfo Sample_info.csv
+4. Please find the example files for the format.
