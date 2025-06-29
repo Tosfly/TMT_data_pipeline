@@ -1,0 +1,17 @@
+﻿TMT_channels,Sample_ids,Group,Sex
+norm int m/z_126.127726,556,A,M
+norm int m/z_127.124761,561,A,F
+norm int m/z_127.131081,563,A,F
+norm int m/z_128.128116,3166,A,M
+norm int m/z_128.134436,560,B,M
+norm int m/z_129.131471,562,B,F
+norm int m/z_129.13779,3171,B,F
+norm int m/z_130.134825,3410,B,M
+norm int m/z_130.141145,3164,C,M
+norm int m/z_131.13818,3136,C,M
+norm int m/z_131.1445,3372,C,M
+norm int m/z_132.141535,3373,C,M
+norm int m/z_132.147855,568,D,F
+norm int m/z_133.14489,3159,D,F
+norm int m/z_133.15121,3161,D,F
+norm int m/z_134.148245,3163,D,M
