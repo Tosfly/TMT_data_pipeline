@@ -1,23 +1,130 @@
-# TMT_data_pipeline
-Easy handle IP2 generated IP2 quant files.
-1. process_16plex_tmt_multiple_groups.py is to handle data cleanup and calculate ANOVA and post hoc p-values for TMT-MS with more than two groups.
-2. input files: TMT result in proList.csv (download from IP2 quant). Sample information in Sample_info.csv (mannually create, columns: TMT_channels, Sample_ids, Group, Sex). Put them in the same folder.
-3. CLI: python process_16plex_tmt_multiple_groups.py --prolist LMC.csv --sampleinfo Sample_info.csv -o LMC_results.csv --spec-count-min 3
-4. Please find the example files for the format.
-5. The output file:
-   a. Remove all columns whose header contains "avg"./
-   b. Remove all rows where the column "accession" contains "contaminant_".
-   c. Remove all rows where the column "accession" contains "Reverse_".
-   d. Remove all rows which the column "spec count" < --spec-count-min.
-   e. Add a new column called "GeneName" at the leftmost position.
-   f. Use Sample_info.csv to rename the TMT intensity columns. in this format: Sample_Sample_ids_Group_Sex.
-   g. Calculate p-values across all the groups using only columns with the renamed format. Groups are defined by the "Group" column in 
-      Sample_info.csv (in this case four groups: A, B, C, D. The group number may be different but will always names in a similar way).
-   h. Add new columns to show post hoc p-values between each pair of groups (e.g., A vs B, A vs C, etc.).
-   i. Add ratio columns next to each A vs B post-hoc column.
-   j. Exclude TMT channels not listed in Sample_info.csv.
-   k. Save the final processed data to a new CSV file with a given name. 
+Inputs
 
+Place both files in the same folder:
+
+IP2 quant export
+
+Filename example: proList.csv (your file may be LMC.csv, LGS.csv, etc.)
+
+Sample metadata
+
+Filename: Sample_info.csv
+
+Required columns:
+
+TMT_channels
+
+Sample_ids
+
+Group
+
+Sex
+
+Example Sample_info.csv snippet:
+
+TMT_channels,Sample_ids,Group,Sex
+126,Mouse01,A,M
+127N,Mouse02,A,F
+127C,Mouse03,B,M
+128N,Mouse04,B,F
+128C,Mouse05,C,M
+129N,Mouse06,C,F
+129C,Mouse07,D,M
+130N,Mouse08,D,F
+
+
+Groups are defined by the Group column and can be A, B, C, D, etc. The number and names may vary, but follow a simple label pattern.
+
+Command line usage
+
+Basic example:
+
+python process_16plex_tmt_multiple_groups.py \
+  --prolist LMC.csv \
+  --sampleinfo Sample_info.csv \
+  -o LMC_results.csv \
+  --spec-count-min 3
+
+
+Arguments
+
+--prolist Path to the IP2 TMT results CSV (e.g., proList.csv)
+
+--sampleinfo Path to Sample_info.csv
+
+-o Output CSV filename
+
+--spec-count-min Minimum value for the spec count filter
+
+Processing steps in detail
+
+Column cleanup
+Remove every column whose header contains avg (case insensitive).
+
+Row filters
+
+Drop rows where accession contains contaminant_
+
+Drop rows where accession contains Reverse_
+
+Drop rows where spec count is less than --spec-count-min
+
+Column additions and renaming
+
+Insert a new leftmost column named GeneName
+
+Rename TMT intensity columns using this format:
+Sample_<Sample_ids>_<Group>_<Sex>
+Example: Sample_Mouse01_A_M
+
+Group selection
+
+Keep only TMT channels present in Sample_info.csv
+
+Statistics
+
+Run one-way ANOVA across all groups using the renamed intensity columns
+
+For each pair of groups (for example A vs B, A vs C, ...), compute post hoc p-values
+
+Add ratio columns next to each pairwise comparison, using mean(Group1) / mean(Group2)
+
+Output
+
+Save the fully processed table to the output CSV you specify
+
+Example output columns
+
+GeneName
+
+Original annotation columns retained from IP2 (minus any avg* columns)
+
+Renamed sample intensity columns like Sample_Mouse01_A_M
+
+anova_pvalue
+
+For each pair, for example A_vs_B_pvalue and A_vs_B_ratio
+
+Additional pairwise p-values and ratios for all group combinations
+
+Notes
+
+Make sure TMT_channels values in Sample_info.csv match the TMT channel headers in your IP2 file.
+
+Only samples listed in Sample_info.csv are analyzed.
+
+Use a higher --spec-count-min if you want a stricter filter.
+
+Quick start
+# In the folder that contains LMC.csv and Sample_info.csv
+python process_16plex_tmt_multiple_groups.py \
+  --prolist LMC.csv \
+  --sampleinfo Sample_info.csv \
+  -o LMC_results.csv \
+  --spec-count-min 3
+
+
+Example files are included to illustrate the expected formats.
 
 
 
