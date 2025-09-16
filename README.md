@@ -5,7 +5,7 @@ Easy handle IP2 generated IP2 quant files.
 3. CLI: python process_16plex_tmt_multiple_groups.py --prolist LMC.csv --sampleinfo Sample_info.csv -o LMC_results.csv --spec-count-min 3
 4. Please find the example files for the format.
 5. The output file:
-   a. Remove all columns whose header contains "avg".
+   a. Remove all columns whose header contains "avg"./
    b. Remove all rows where the column "accession" contains "contaminant_".
    c. Remove all rows where the column "accession" contains "Reverse_".
    d. Remove all rows which the column "spec count" < --spec-count-min.
