@@ -106,6 +106,7 @@ In the folder containing `LMC.csv` and `Sample_info.csv`:
 
 ```bash
 python process_16plex_tmt_multiple_groups.py --prolist LMC.csv --sampleinfo Sample_info.csv -o LMC_results.csv --spec-count-min 3
+python process_16plex_tmt_multiple_groups_Q3.py --prolist VB3.csv --sampleinfo VB3_info.csv -o VB3_results_Q3.csv --q3-normalize --spec-count-min 1
 ```
 
 Example files are included to illustrate expected formats.
