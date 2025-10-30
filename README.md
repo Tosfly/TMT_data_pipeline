@@ -81,6 +81,7 @@ python process_16plex_tmt_multiple_groups.py --prolist LMC.csv --sampleinfo Samp
 - Run one-way ANOVA across all groups using renamed intensity columns
 - Compute post hoc p-values for each group pair (e.g., A vs B, A vs C)
 - Add ratio columns for each pairwise comparison using `mean(Group1) / mean(Group2)`
+- Enable Q3 normalization after the data cleanup
 
 ### Output
 - Save the processed table to the specified output CSV
