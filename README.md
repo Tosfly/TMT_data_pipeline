@@ -58,6 +58,7 @@ python process_16plex_tmt_multiple_groups.py --prolist LMC.csv --sampleinfo Samp
 - `--sampleinfo`: Path to `Sample_info.csv`
 - `-o`: Output CSV filename
 - `--spec-count-min`: Minimum value for the spectral count filter
+- `--q3-normalize`: Q3 normalization after data clean up
 
 ## Processing Steps
 
