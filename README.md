@@ -13,6 +13,7 @@ The `process_16plex_tmt_multiple_groups.py` script cleans IP2-generated TMT quan
 - Adds ratio columns for each post hoc comparison
 - Excludes TMT channels not listed in metadata
 - Writes a cleaned, annotated results CSV
+- Enable to do the t-SNE plot using tsne_from_matrix.py
 
 ## Inputs
 
@@ -109,6 +110,9 @@ In the folder containing `LMC.csv` and `Sample_info.csv`:
 ```bash
 python process_16plex_tmt_multiple_groups.py --prolist LMC.csv --sampleinfo Sample_info.csv -o LMC_results.csv --spec-count-min 3
 python process_16plex_tmt_multiple_groups_Q3.py --prolist VB3.csv --sampleinfo VB3_info.csv -o VB3_results_Q3.csv --q3-normalize --spec-count-min 1
+python3 tsne_from_matrix.py VB3_results.csv --out-prefix vb3_all
+python3 tsne_from_matrix.py VB3_results.csv --out-prefix vb3_all --separate-plots
+python3 tsne_from_matrix.py VB3_results.csv --out-prefix vb3_all --top-percent 20 --separate-plots
 ```
 
 Example files are included to illustrate expected formats.
