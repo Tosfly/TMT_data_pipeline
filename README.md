@@ -1,4 +1,4 @@
-# P2 TMT-MS: Multi-group Processing Overview
+# IP2 TMT-MS: Multi-group Processing Overview
 
 The `process_16plex_tmt_multiple_groups.py` script cleans IP2-generated TMT quant files and performs statistical analysis for experiments with more than two groups.
 
